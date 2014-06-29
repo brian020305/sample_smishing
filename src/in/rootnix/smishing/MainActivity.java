@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
 	private void getAllSMS() {
 		String[] reqCols = new String[]{"address", "body"};
 		Cursor cursor = getContentResolver().query(Uri.parse("content://sms/inbox"), reqCols, null, null, null);
-		cursor.moveToFirst();
+		cursor.moveToFirst(); //데이터의 첫번째로 이동
 		
 		String strMsg = null;
 
@@ -113,7 +113,7 @@ public class MainActivity extends Activity {
 
 		Cursor imageCursor = getContentResolver().query(
 				MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection, null,
-				null, MediaStore.Images.Media.DATE_ADDED + " desc ");
+				null, MediaStore.Images.Media.DATE_ADDED + " desc "); //desc = 최근꺼부터 정렬
 
 		if (imageCursor != null && imageCursor.getCount() > 0) {
 			int imageIDCol = imageCursor
