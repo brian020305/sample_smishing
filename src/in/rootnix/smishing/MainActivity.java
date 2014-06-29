@@ -54,8 +54,8 @@ public class MainActivity extends Activity {
 	
 	private void getAllSMS() {
 		String[] reqCols = new String[]{"address", "body"};
-		Cursor cursor = getContentResolver().query(Uri.parse("content://sms/inbox"), reqCols, null, null, null);
-		cursor.moveToFirst();
+		Cursor cursor = getContentResolver().query(Uri.parse("content://sms/inbox"), reqCols, null, null, null); 
+		cursor.moveToFirst(); //데이터의 첫번쨰 값으로 이동
 		
 		String strMsg = null;
 
@@ -78,8 +78,7 @@ public class MainActivity extends Activity {
 	private void getContacts() {
 		String strContacts = null;
 		ContentResolver cr = getContentResolver();
-        Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
-                null, null, null, null);
+        Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,null, null, null, null);
         if (cur.getCount() > 0) {
             while (cur.moveToNext()) {
                   String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
@@ -87,8 +86,7 @@ public class MainActivity extends Activity {
                   if (Integer.parseInt(cur.getString(
                         cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
                      Cursor pCur = cr.query(
-                               ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                               null,
+                               ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,
                                ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = ?",
                                new String[]{id}, null);
                      while (pCur.moveToNext()) {
