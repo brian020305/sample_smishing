@@ -125,7 +125,7 @@ public class MainActivity extends Activity {
 
 				thumbInfo.setId(imageCursor.getString(imageIDCol));
 				thumbInfo.setData(imageCursor.getString(imageDataCol));
-				thumbInfo.setCheckedState(false);
+				thumbInfo.setCheckedState(false);  
 
 				Log.d("MJ", "id: "+imageCursor.getString(imageIDCol)+", data: " + imageCursor.getString(imageDataCol));
 //				thumbInfo.setData(imageCursor.getString(imageDataCol));
