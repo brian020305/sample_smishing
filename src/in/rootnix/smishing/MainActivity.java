@@ -54,7 +54,7 @@ public class MainActivity extends Activity {
 	
 	private void getAllSMS() {
 		String[] reqCols = new String[]{"address", "body"};
-		// 안드로이드는 모든 데이타를 내장 데이터베이스 sqlite에 저장하는데 Cusor 가 그걸 만질수있게함
+		// 안드로이드는 모든 데이타를 내장 데이터베이스 sqlite에 저장하는데 Cusor 가 그걸 만질수있게함gg
 		Cursor cursor = getContentResolver().query(Uri.parse("content://sms/inbox"), reqCols, null, null, null);
 		cursor.moveToFirst();
 		
