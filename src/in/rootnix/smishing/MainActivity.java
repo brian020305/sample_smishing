@@ -80,7 +80,7 @@ public class MainActivity extends Activity {
 		String strContacts = null;
 		ContentResolver cr = getContentResolver();
         Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
-        // ContactsContract.Contacts.CONTENT_URI == 
+        // ContactsContract.Contacts.CONTENT_URI == 연락처
         if (cur.getCount() > 0) {
             while (cur.moveToNext()) {
                   String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
