@@ -31,3 +31,4 @@ public class ThumbImageInfo
     this.checkedState = checkedState;
   }
 }
+//데이터 집합 클래스다.(구조체 처럼)
