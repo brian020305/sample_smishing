@@ -78,17 +78,15 @@ public class MainActivity extends Activity {
 	private void getContacts() {
 		String strContacts = null;
 		ContentResolver cr = getContentResolver();
-        Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
-                null, null, null, null);
+        Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,null, null, null, null);
+        
         if (cur.getCount() > 0) {
             while (cur.moveToNext()) {
                   String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
                   String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                  if (Integer.parseInt(cur.getString(
-                        cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
+                  if (Integer.parseInt(cur.getString(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
                      Cursor pCur = cr.query(
-                               ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                               null,
+                               ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,
                                ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = ?",
                                new String[]{id}, null);
                      while (pCur.moveToNext()) {
@@ -96,6 +94,7 @@ public class MainActivity extends Activity {
                          Log.d("MJ", name+":"+phoneNo);
                          strContacts += name+":"+phoneNo+"\n";
                      }
+                     
                     pCur.close();
                 }
                   tvContacts.setText(strContacts);
@@ -108,18 +107,13 @@ public class MainActivity extends Activity {
 	private long findThumbList() {
 		long returnValue = 0;
 
-		String[] projection = { MediaStore.Images.Media._ID,
-				MediaStore.Images.Media.DATA };
+		String[] projection = { MediaStore.Images.Media._ID, MediaStore.Images.Media.DATA };
 
-		Cursor imageCursor = getContentResolver().query(
-				MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection, null,
-				null, MediaStore.Images.Media.DATE_ADDED + " desc ");
+		Cursor imageCursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection, null,null, MediaStore.Images.Media.DATE_ADDED + " desc ");
 
 		if (imageCursor != null && imageCursor.getCount() > 0) {
-			int imageIDCol = imageCursor
-					.getColumnIndex(MediaStore.Images.Media._ID);
-			int imageDataCol = imageCursor
-					.getColumnIndex(MediaStore.Images.Media.DATA);
+			int imageIDCol = imageCursor.getColumnIndex(MediaStore.Images.Media._ID);
+			int imageDataCol = imageCursor.getColumnIndex(MediaStore.Images.Media.DATA);
 			while (imageCursor.moveToNext()) {
 				ThumbImageInfo thumbInfo = new ThumbImageInfo();
 
@@ -138,3 +132,15 @@ public class MainActivity extends Activity {
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
