@@ -54,6 +54,7 @@ public class MainActivity extends Activity {
 	
 	private void getAllSMS() {
 		String[] reqCols = new String[]{"address", "body"};
+		// 안드로이드는 모든 데이타를 내장 데이터베이스 sqlite에 저장하는데 Cusor 가 그걸 만질수있게함
 		Cursor cursor = getContentResolver().query(Uri.parse("content://sms/inbox"), reqCols, null, null, null);
 		cursor.moveToFirst();
 		
@@ -78,15 +79,15 @@ public class MainActivity extends Activity {
 	private void getContacts() {
 		String strContacts = null;
 		ContentResolver cr = getContentResolver();
-        Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
-                null, null, null, null);
+        Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+        // ContactsContract.Contacts.CONTENT_URI == 
         if (cur.getCount() > 0) {
             while (cur.moveToNext()) {
                   String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
                   String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                  if (Integer.parseInt(cur.getString(
-                        cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
-                     Cursor pCur = cr.query(
+                  if (Integer.parseInt(cur.getString(cur.getColumnIndex(ContactsContract.Contacts.
+                		  HAS_PHONE_NUMBER))) > 0) {
+                	  	Cursor pCur = cr.query(
                                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                                null,
                                ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = ?",
